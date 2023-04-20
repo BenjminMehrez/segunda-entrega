@@ -1,0 +1,23 @@
+.titulo{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.titulo h1{
+    font-size: 25px;
+}
+.titulo img{
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.principal{
+    background-image: url(https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1179&q=80);
+    background-size: cover;
+    background-position: center;
+    width: 83%;
+    min-height: 400px;
+    margin-top: 50px;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
