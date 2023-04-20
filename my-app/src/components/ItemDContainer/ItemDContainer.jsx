@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-const ItemDetailContainer = () => {
+const ItemDContainer = () => {
 
   const cards = [
     {
@@ -94,7 +94,7 @@ const ItemDetailContainer = () => {
 
   return (
     <div>
-      <h1 style={{ margin: "50px" }}>Mas informacion acerca de {cards[id - 1].nombre}</h1>
+      <h1 style={{ margin: "50px"}}>{cards[id - 1].nombre}</h1>
       <div style={{ margin: "auto" }} className="col-sm-8 col-md-5">
         <img className="card-img-top" src={cards[id - 1].foto} alt="Card image" />
         <div className="card-body">
@@ -108,4 +108,4 @@ const ItemDetailContainer = () => {
   )
 }
 
-export default ItemDetailContainer
+export default ItemDContainer

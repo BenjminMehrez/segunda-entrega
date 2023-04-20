@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Card from "../Card/Card";
 import Titulo from "../Titulo/Titulo"
 
-const ItemListContainer = () => {
+const ItemLContainer = () => {
 
     const cards = [
         {
@@ -101,4 +101,4 @@ const ItemListContainer = () => {
   )
 }
 
-export default ItemListContainer
+export default ItemLContainer

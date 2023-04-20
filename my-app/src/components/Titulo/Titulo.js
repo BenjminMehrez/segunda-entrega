@@ -1,7 +1,7 @@
 import React from "react";
 import "./titulo.css";
 
-const ItemListContainer = (props) => {
+const ItemLContainer = (props) => {
   const { titulo } = props;
   return (
     <div>
@@ -13,4 +13,4 @@ const ItemListContainer = (props) => {
   );
 };
 
-export default ItemListContainer;
+export default ItemLContainer;
