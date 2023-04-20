@@ -82,7 +82,7 @@ const ItemListContainer = () => {
     
     <div>
         <Titulo
-        titulo="Somos Adibas no Adidas"
+        titulo="Sómos Adibas no Adidas"
         ></Titulo>
 
     <div className="d-flex container-fluid row" style={{ margin: "auto" }}>

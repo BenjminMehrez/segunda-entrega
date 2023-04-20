@@ -5,7 +5,7 @@ const ItemListContainer = (props) => {
   const { titulo } = props;
   return (
     <div>
-      <div className="titulo">
+      <div className="titulo text-decoration-underline">
         <h1>{titulo}</h1>
         <div className="principal"></div>
       </div>
