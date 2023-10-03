@@ -1,40 +1,49 @@
-import express from 'express';
-import handlebars from 'express-handlebars';
-import __dirname from './utils.js';
-import viewsRouter from './routes/views.js';
-import { Server } from 'socket.io';
-
+import express from "express";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import mongoose from "mongoose";
+import handlebars from 'express-handlebars'
+import __dirname from "./utils.js";
+import viewsRouter from './routes/views.js'
+import sessionsRouter from './routes/sessions.js'
+import passport from "passport";
+import initializePasport from "./config/passport.js";
 
 const app = express();
+const urlMongo = 'mongodb+srv://PracticaIntegradora:12344@cursobackend.aoxi4e7.mongodb.net/login';
 
-app.engine('handlebars', handlebars.engine());
-app.set('views', __dirname + '/views');
-app.set('view engine', 'handlebars');
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static(__dirname + '/public'));
-
-
-const server = app.listen(8080, () => {
-    console.log('Servidor arriva')
+const connection = mongoose.connect(urlMongo, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
 
-const io = new Server(server);
 
-app.use('/', viewsRouter);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-let messages = [];
+app.use(express.static(__dirname + '/public'))
 
-io.on('connection', socket => {
-    console.log('Nuevo cliente conectado')
+app.engine('handlebars', handlebars.engine())
+app.set('views', __dirname + '/views')
+app.set('view engine', 'handlebars')
 
-    socket.on('message', data => {
-        messages.push(data);
-        io.emit('messageLogs', messages);   
-    })
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl: urlMongo,
+        ttl: 3600
+    }),
+    secret: 'CoderSecret',
+    resave: false,
+    saveUninitialized: false
+}))
+initializePasport();
+app.use(passport.initialize())
+app.use(passport.session())
 
-    socket.on('authenticated', data => {
-        socket.broadcast.emit('newUserConnected', data);
-    })
+app.use('/', viewsRouter)
+app.use('/api/sessions', sessionsRouter)
+
+    
+const server = app.listen(8080, () => {
+    console.log('Servidor arriba')
 })
